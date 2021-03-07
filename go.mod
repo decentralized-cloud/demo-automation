@@ -1,6 +1,6 @@
 module github.com/decentralized-cloud/demo-automation
 
-go 1.15
+go 1.16
 
 require (
 	cloud.google.com/go v0.78.0

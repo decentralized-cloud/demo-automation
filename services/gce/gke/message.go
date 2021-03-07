@@ -6,7 +6,7 @@ type CreateClusterRequest struct {
 	Name          string            `json:"name"`
 	Description   string            `json:"description"`
 	ClusterLabels map[string]string `json:"clusterLabels"`
-	NodeLabels    map[string]string `json:"NodeLabels"`
+	NodeLabels    map[string]string `json:"nodeLabels"`
 }
 
 // CreateClusterResponse contains the response of creating a GKE cluster

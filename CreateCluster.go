@@ -27,6 +27,13 @@ func init() {
 
 // CreateCluster creates a new GKE cluster
 func CreateCluster(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
+		w.WriteHeader(http.StatusBadRequest)
+		fmt.Fprintln(w, "Only http POST method is supported")
+
+		return
+	}
+
 	request := gke.CreateClusterRequest{}
 	if err := json.NewDecoder(r.Body).Decode(&request); err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
@@ -39,6 +46,8 @@ func CreateCluster(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		fmt.Fprintf(w, "Failed to create cluster. Error: %v\n", err)
+
+		return
 	}
 
 	w.WriteHeader(http.StatusAccepted)
